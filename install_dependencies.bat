@@ -12,11 +12,16 @@ if not exist "%PYTHON%" (
     exit /b
 )
 
+"%PYTHON%" -m ensurepip
+
 echo Upgrading pip...
 "%PYTHON%" -m pip install --upgrade pip setuptools wheel
 
 echo Installing core dependencies...
 "%PYTHON%" -m pip install gradio pillow numpy
+
+echo Installing Hugging Face Diffusers...
+"%PYTHON%" -m pip install diffusers transformers
 
 echo Installing PyTorch (CPU version)...
 "%PYTHON%" -m pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
