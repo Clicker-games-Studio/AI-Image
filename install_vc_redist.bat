@@ -16,7 +16,7 @@ if not exist "%EXE%" (
 )
 
 REM Silent install
-"%EXE%" /install /quiet /norestart
+"%EXE%" /install /passive /norestart
 
 echo.
 echo Visual C++ Redistributable installed.
