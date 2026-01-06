@@ -1,27 +1,28 @@
 @echo off
 setlocal
 
-echo Installing required Python packages...
+echo Installing Python dependencies...
 
 REM Path to bundled Python
 set PYTHON=Python\Python\python.exe
 
-REM Check if Python exists
 if not exist "%PYTHON%" (
-    echo Python not found at %PYTHON%
-    echo Please run download_python.bat first.
+    echo Python not found. Run download_python.bat first.
     pause
     exit /b
 )
 
-REM Upgrade pip
-"%PYTHON%" -m pip install --upgrade pip
+echo Upgrading pip...
+"%PYTHON%" -m pip install --upgrade pip setuptools wheel
 
-REM Install required packages
-"%PYTHON%" -m pip install gradio
+echo Installing core dependencies...
+"%PYTHON%" -m pip install gradio pillow numpy
+
+echo Installing PyTorch (CPU version)...
+"%PYTHON%" -m pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
 
 echo.
-echo All packages installed successfully.
+echo All dependencies installed successfully.
 echo You can now run the app.
 pause
 endlocal
